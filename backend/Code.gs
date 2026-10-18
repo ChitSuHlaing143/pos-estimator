@@ -10,11 +10,11 @@ function doPost(e) {
     const data=JSON.parse(p.payload), a=data.answers;
     const allowed={shop:['grocery','fashion','beauty','other'],branches:['one','few','many'],counters:['one','few','many','unsure'],package:['basic','complete','custom']};
     Object.keys(allowed).forEach(k=>{if(!a || !allowed[k].includes(a[k]))throw new Error('Invalid selection');});
-    const prices={basic:[500000,700000],complete:[1000000,1400000],custom:[500000,700000]};
-    const branches={one:[0,0],few:[300000,600000],many:[700000,1400000]};
-    const counters={one:[0,0],few:[150000,300000],many:[350000,700000],unsure:[0,300000]};
-    const addons={expiry:[150000,250000],units:[100000,180000],warehouse:[150000,250000],promotion:[200000,400000],migration:[50000,200000],offline:[400000,800000]};
-    if(data.pricingVersion!=='demo-2026-01')throw new Error('Pricing version changed. Please reload the estimator.');
+    const prices={basic:[1800000,2200000],complete:[4000000,5000000],custom:[1800000,2200000]};
+    const branches={one:[0,0],few:[500000,800000],many:[1000000,1500000]};
+    const counters={one:[0,0],few:[200000,400000],many:[400000,700000],unsure:[0,400000]};
+    const addons={expiry:[300000,500000],units:[200000,300000],warehouse:[300000,500000],promotion:[400000,600000],migration:[100000,300000],offline:[400000,600000]};
+    if(data.pricingVersion!=='retail-2026-02')throw new Error('Pricing version changed. Please reload the estimator.');
     if(!Array.isArray(a.addons)||a.addons.length>6||new Set(a.addons).size!==a.addons.length||a.addons.some(k=>!addons[k]))throw new Error('Invalid add-ons');
     const range=prices[a.package].map((v,i)=>v+branches[a.branches][i]+counters[a.counters][i]+a.addons.reduce((n,k)=>n+addons[k][i],0));
     const id=PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
@@ -27,7 +27,7 @@ function doPost(e) {
     if(!found){
       // Formula-injection protection. Contact details remain text, never spreadsheet formulas.
       const safe=v=>/^[\s]*[=+\-@]/.test(String(v))?"'"+v:String(v);
-      sheet.appendRow([new Date(),p.requestId,safe(name),safe(phone),safe(address),a.shop,a.branches,a.counters,a.package,a.addons.join(', '),range[0],range[1],'demo-2026-01','New / preliminary','yes']);
+      sheet.appendRow([new Date(),p.requestId,safe(name),safe(phone),safe(address),a.shop,a.branches,a.counters,a.package,a.addons.join(', '),range[0],range[1],'retail-2026-02','New / preliminary','yes']);
       SpreadsheetApp.flush();
     }
     return page_('ပေးပို့မှု အောင်မြင်ပါပြီ။','သင့်အချက်အလက်နှင့် ရွေးချယ်မှုများကို သိမ်းဆည်းပြီးပါပြီ။ မူလ tab သို့ ပြန်သွားနိုင်ပါပြီ။');
