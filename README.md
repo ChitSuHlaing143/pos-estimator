@@ -5,8 +5,8 @@ HTML + custom CSS + Bootstrap 5.3.3 CSS + vanilla JavaScript. No build required.
 ## First open
 Open index.html. Four questions, optional add-ons, live price range, text download, print/PDF, optional contact form. No contact data is stored in localStorage. Fonts and Bootstrap use CDNs; custom CSS retains usable layout if CDNs are unavailable.
 
-## Important: DEMO prices
-All prices are illustrative, NOT a recommended market quotation. Edit assets/config.js before publishing, and mirror the pricing tables/version in backend/Code.gs. The server calculates its own estimate; it does not trust browser totals. Branch and counter surcharges are planning ranges, not per-counter/per-branch invoices. 4+ branches/counters, other shop types, offline and integrations require manual review. Base includes single-store/single-counter sales, basic stock, receipt, return, customer list and basic reports. Complete adds purchasing, suppliers, debt, expenses and estimated profit. Optional add-ons apply to either package without duplicating these included features. Hosting/hardware/support are excluded.
+## Indicative commercial prices
+Base: MMK 1,800,000–2,200,000 (18–22 lakhs). Complete: MMK 4,000,000–5,000,000 (40–50 lakhs). Highest branch/counter ranges plus all add-ons: MMK 7,100,000–10,000,000 (71–100 lakhs). These are indicative quotes under this pricing model; exact scope and counts require review. Edit assets/config.js before publishing, and mirror the pricing tables/version in backend/Code.gs. The server calculates its own estimate; it does not trust browser totals. Branch and counter surcharges are planning ranges, not per-counter/per-branch invoices. 4+ branches/counters, other shop types, offline and integrations require manual review. Base includes single-store/single-counter sales, basic stock, receipt, return, customer list and basic reports. Complete adds purchasing, suppliers, debt, expenses and estimated profit. Optional add-ons apply to either package without duplicating these included features. Hosting/hardware/support are excluded.
 
 ## GitHub Pages hosting
 1. Create your GitHub repository.
